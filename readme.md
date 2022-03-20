@@ -8,18 +8,20 @@ To avoid data loss, do not include "-r" option in your intial run. Check the out
 
 # CLI options
 ```bash
-usage: findDup.py [-h] [--video] [--document] [--archive] [--image] [--music] -d DIRS [--keep KEEPKEYWORD] [-r]
+usage: dupSweeper.py [-h] [--video] [--document] [--archive] [--image] [--music] -d DIRS [--keep KEEPKEYWORD] [-r] [--probe-size PROBESIZE]
 
 options:
-  -h, --help           show this help message and exit
-  --video              Scan video files: [avi, mkv, mp4, mpg, wmv, rmvb]
-  --document           Scan document files
-  --archive            Scan archive files
-  --image              Scan image files
-  --music              Scan music files
-  -d DIRS, --dir DIRS  Setting dirs to search
-  --keep KEEPKEYWORD   Setting keywords in file to always keep
-  -r                   Remove duplicates after searching
+  -h, --help            show this help message and exit
+  --video               Scan video files: {'rmvb', 'avi', 'mkv', 'wmv', 'mp4', 'mpg'}
+  --document            Scan document files: {'doc', 'epub', 'mobi', 'pdf', 'azw3'}
+  --archive             Scan archive files: {'tar', 'rar', 'iso', 'zip'}
+  --image               Scan image files: {'webm', 'jpeg', 'png', 'tiff', 'jpg'}
+  --music               Scan music files: {'ape', 'mp3', 'aac', 'flac', 'wav', 'm4a'}
+  -d DIRS, --dir DIRS   Setting dirs to search
+  --keep KEEPKEYWORD    Setting keywords in file to always keep
+  -r, --remove          Remove duplicates after searching
+  --probe-size PROBESIZE
+                        Size of data chunk (in MB) to hash of each file.
 ```
 
 # Installation
@@ -36,10 +38,10 @@ sudo cp dupSweeper.py /usr/local/sbin
 # Examples
 
 ```bash
-findDup.py -d /mnt/SATASSDEXT4 -d /home --document --keep NutStore
+dupSweeper.py -d /mnt/SATASSDEXT4 -d /home --document --keep NutStore
 # find document file duplicates in two directories, always keep file whose path contains keyword "NutStore".
 
-findDup.py -d /mnt/SATASSDEXT4 -d /home --video --keep NutStore -r
+dupSweeper.py -d /mnt/SATASSDEXT4 -d /home --video --keep NutStore -r
 # similar to above, but only scan video files. removes duplicates.
 ```
 
