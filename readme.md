@@ -3,8 +3,8 @@
 DupSweeper is an useful python utility to find possible duplicates of files living in one or multiple paths. DupSweeper works by recursively searching through user-provided path to look for md5 hash collision of first couple of data chunks(e.g. 1 MiB) to form equivalence class of files. User can also choose to delete all duplicate copies of files when iterating through these paths.For convenience, user can specify "keep" keywords in which DupSweeper will always leave alone to avoid data loss and to specify which copy to keep.
 
 # Caution 
-CAUTION: Use the utility at your own risk! I'm not responsible for any data loss or data corruption caused by this utility!
-To avoid data loss, do not include "-r" option in your intial run. Check the output of your initial run to decide whether to switch on the actual remove option "-r".
+**CAUTION: Use the utility at your own risk! I'm not responsible for any data loss or data corruption caused by this utility!
+To avoid data loss, do not include "-r" option in your intial run. Check the output of your initial run to decide whether to switch on the actual remove option "-r".**
 
 # CLI options
 ```bash
