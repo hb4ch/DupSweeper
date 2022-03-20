@@ -8,7 +8,7 @@ from rich import print
 
 videoFileExt = {"avi", "mkv", "mp4", "mpg", "wmv", "rmvb", "mov"}
 docsExt = {"doc", "pdf", "epub", "mobi", "azw3"}
-archiveExt = {"rar", "zip", "tar", "iso"}
+archiveExt = {"rar", "zip", "tar.gz", "tar.xz", "tar.bz2", "7z", "iso"}
 imageExt = {"jpeg", "jpg", "png", "tiff", "webm"}
 musicExt = {"mp3", "m4a", "flac", "ape", "wav", "aac"}
 
@@ -114,12 +114,15 @@ for key, value in md5File.items():
             print("keeping [bold green]{}[/bold green]".format(keepfile))
         for realname in value:
             if (args.remove):
-                if realname not in keeplist: 
-                    currSize = os.path.getsize(realname)
-                    print("removing: [bold red]" + realname + "[/bold red]")
-                    os.remove(realname)
-                    deleteFiles += 1
-                    freedSize += currSize
+                if realname not in keeplist:
+                    try: 
+                        currSize = os.path.getsize(realname)
+                        print("removing: [bold red]" + realname + "[/bold red]")
+                        os.remove(realname)
+                        deleteFiles += 1
+                        freedSize += currSize
+                    except Exception:
+                        print("[bold yellow] Error deleting file: {}[/bold yellow]".format(realname))
             else:
                 if realname not in keeplist:
                     print("plan to remove: [bold red]" + realname + "[/bold red]")
