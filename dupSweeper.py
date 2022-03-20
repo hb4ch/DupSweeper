@@ -6,7 +6,7 @@ import hashlib
 import argparse
 from rich import print
 
-videoFileExt = {"avi", "mkv", "mp4", "mpg", "wmv", "rmvb"}
+videoFileExt = {"avi", "mkv", "mp4", "mpg", "wmv", "rmvb", "mov"}
 docsExt = {"doc", "pdf", "epub", "mobi", "azw3"}
 archiveExt = {"rar", "zip", "tar", "iso"}
 imageExt = {"jpeg", "jpg", "png", "tiff", "webm"}
@@ -63,7 +63,7 @@ md5File = dict()
 def buildHashTable(extList, realname):
     for ext in extList:
         extDot = "." + ext
-        if (realname.find(extDot) != -1):
+        if (realname.find(extDot) == len(realname) - len(extDot)):
             with open(realname, "rb") as f:
                 try:
                     readSize = 1024 * 1024 * args.probesize
@@ -76,7 +76,7 @@ def buildHashTable(extList, realname):
                         md5File[hashValue].append(realname)
                 except Exception:
                     print("Error opening {}!".format(realname))
-            break            
+            break
 
 for dir in directory:
     print("Scanning directory: " + dir)
